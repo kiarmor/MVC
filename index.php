@@ -22,5 +22,12 @@ define('VIEW_DIR', ROOT . 'View' . DS);
 
 $request = new \Framework\Request($_GET, $_POST, $_FILES);
 
+$controller = $request->get('controller', 'Default');
+$action = $request->get('action', 'index');
+
+$controller = '\\Controller \\' . $controller . 'Controller';//example: 'Default' . 'Controller'
+$controller = new $controller;
 
 require VIEW_DIR . 'layout.phtml';
+
+var_dump($controller, $action);
