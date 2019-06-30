@@ -25,8 +25,14 @@ $request = new \Framework\Request($_GET, $_POST, $_FILES);
 $controller = $request->get('controller', 'Default');
 $action = $request->get('action', 'index');
 
-$controller = '\\Controller \\' . $controller . 'Controller';//example: 'Default' . 'Controller'
-$controller = new $controller;
+$controller = '\\Controller\\' . $controller . 'Controller';//example: '\Controller\Default' . 'Controller'
+
+$controller = new $controller();
+
+$action .= 'Action'; // ex: 'feedback' . 'Action'
+
+$controller->$action();
+
 
 require VIEW_DIR . 'layout.phtml';
 
