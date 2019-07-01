@@ -5,7 +5,7 @@ namespace Framework;
 // todo
 class UploadedFile
 {
-    private $iten;
+    private $item;
     private $size;
     // ...
 

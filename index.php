@@ -26,14 +26,15 @@ $controller = $request->get('controller', 'Default');
 $action = $request->get('action', 'index');
 
 $controller = '\\Controller\\' . $controller . 'Controller';//example: '\Controller\Default' . 'Controller'
+$action .= 'Action'; // ex: 'feedback' . 'Action'
 
 $controller = new $controller();
 
-$action .= 'Action'; // ex: 'feedback' . 'Action'
+if (!method_exists($controller, $action)){
+    throw new \Exception("Action {$action} not found");
+}
 
-$controller->$action();
+$content = $controller->$action();
 
 
 require VIEW_DIR . 'layout.phtml';
-
-var_dump($controller, $action);
