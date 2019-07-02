@@ -3,10 +3,11 @@
 namespace Controller;
 
 use Framework\BaseController;
+use Framework\Request;
 
 class BookController extends BaseController
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         //get db connection
         //fetch books
@@ -24,7 +25,7 @@ class BookController extends BaseController
         ]);
     }
 
-    public function showAction()
+    public function showAction(Request $request)
     {
         return $this->render('show.phtml');
     }

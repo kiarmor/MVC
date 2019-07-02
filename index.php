@@ -20,7 +20,20 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', __DIR__.DS);
 define('VIEW_DIR', ROOT . 'View' . DS);
 
+//temporary
+$dbConfig = [
+    'user' => 'root',
+    'pass' => '',
+    'host' => 'localhost',
+    'dbname' => 'mvc'
+];
+
+$dsn = "mysql: host={$dbConfig['host']}; dbname={$dbConfig['dbname']}";
+
 $request = new \Framework\Request($_GET, $_POST, $_FILES);
+$dbConnection = new \PDO($dsn, $dbConfig['user'], $dbConfig['pass']);
+$dbConnection->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 
 $controller = $request->get('controller', 'Default');
 $action = $request->get('action', 'index');
@@ -34,7 +47,7 @@ if (!method_exists($controller, $action)){
     throw new \Exception("Action {$action} not found");
 }
 
-$content = $controller->$action();
+$content = $controller->$action($request);
 
 
 require VIEW_DIR . 'layout.phtml';
