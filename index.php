@@ -31,9 +31,16 @@ $dbConfig = [
 $dsn = "mysql: host={$dbConfig['host']}; dbname={$dbConfig['dbname']}";
 
 $request = new \Framework\Request($_GET, $_POST, $_FILES);
+$container = new \Framework\Container();
+
 $dbConnection = new \PDO($dsn, $dbConfig['user'], $dbConfig['pass']);
 $dbConnection->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$router = new \Framework\Router();
 
+$container
+    ->set('pdo', $dbConnection)
+    ->set('router', $router)
+;
 
 $controller = $request->get('controller', 'Default');
 $action = $request->get('action', 'index');
@@ -41,8 +48,12 @@ $action = $request->get('action', 'index');
 $controller = '\\Controller\\' . $controller . 'Controller';//example: '\Controller\Default' . 'Controller'
 $action .= 'Action'; // ex: 'feedback' . 'Action'
 
-$controller = new $controller();
+$controller = new $controller($dbConnection);
+$controller->setContainer($container);
 
+/*echo '<pre>';
+print_r($controller);
+echo '<pre>';die;*/
 if (!method_exists($controller, $action)){
     throw new \Exception("Action {$action} not found");
 }

@@ -4,6 +4,15 @@ namespace Framework;
 
 abstract class BaseController
 {
+    protected $container;
+
+    public function setContainer(Container $container)
+    {
+        $this->container = $container;
+
+        return $this;
+    }
+
     protected function render($template, array $params = [])
     {
         extract($params);

@@ -120,7 +120,7 @@ class Book
      */
     public function setIsActive($isActive)
     {
-        $this->isActive = $isActive;
+        $this->isActive = (bool) $isActive;
 
         return $this;
     }
