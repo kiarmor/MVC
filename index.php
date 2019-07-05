@@ -36,10 +36,13 @@ $container = new \Framework\Container();
 $dbConnection = new \PDO($dsn, $dbConfig['user'], $dbConfig['pass']);
 $dbConnection->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $router = new \Framework\Router();
+$repositoryFactory = new \Framework\RepositoryFactory();
+$repositoryFactory->setPdo($dbConnection);
 
 $container
     ->set('pdo', $dbConnection)
     ->set('router', $router)
+    ->set('repository_factory', $repositoryFactory)
 ;
 
 $controller = $request->get('controller', 'Default');

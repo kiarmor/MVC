@@ -11,6 +11,7 @@ class DefaultController extends BaseController
 
     public function __construct(\PDO $pdo)
     {
+        //$this->pdo = $pdo;
     }
 
     public function indexAction(Request $request) //дает возможность обращаться к $_GET, $_POST параметрам класса Request

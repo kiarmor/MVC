@@ -18,7 +18,7 @@ class BookRepository
         $this->pdo = $pdo;
     }
 
-    public function findAllBooks()
+    public function findAll()
     {
         $collection = [];
         $sth = $this->pdo->query('SELECT * FROM book');
