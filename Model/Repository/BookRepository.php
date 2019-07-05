@@ -30,7 +30,7 @@ class BookRepository
                 ->setDescription($res['description'])
                 ->setPrice($res['price'])
                 ->setIsActive($res['is_active'])
-                ->setId($res['category_id'])
+                ->setCategory($res['category_id'])
             ;
 
             $collection[] = $book;

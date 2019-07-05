@@ -22,6 +22,7 @@ class BookController extends BaseController
 
     public function showAction(Request $request)
     {
+
         return $this->render('show.phtml');
     }
 }
