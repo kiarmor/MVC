@@ -8,6 +8,8 @@ use Model\Repository\BookRepository;
 
 class BookController extends BaseController
 {
+    const BOOKS_PER_PAGE = 10;
+
     public function indexAction(Request $request)
     {
         $books = $this
@@ -22,7 +24,18 @@ class BookController extends BaseController
 
     public function showAction(Request $request)
     {
+        $id = $request->get('id'); //$_GET['id']
+        $book = $this
+            ->getRepository('Book')
+            ->find($id)
+        ;
 
-        return $this->render('show.phtml');
+        if (!$book){
+           // throw new NotFoundException('Book not found');
+        }
+
+        return $this->render('show.phtml', [
+            'book' => $book
+        ]);
     }
 }
