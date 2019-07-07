@@ -4,6 +4,7 @@ namespace Controller;
 
 use Framework\BaseController;
 use Framework\Request;
+use Framework\Exception\NotFoundException;
 use Model\Repository\BookRepository;
 
 class BookController extends BaseController
@@ -31,7 +32,7 @@ class BookController extends BaseController
         ;
 
         if (!$book){
-           // throw new NotFoundException('Book not found');
+           throw new NotFoundException('Book not found');
         }
 
         return $this->render('show.phtml', [
