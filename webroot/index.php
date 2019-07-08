@@ -9,6 +9,8 @@ spl_autoload_register(function($className) {
         $file
     );
 
+    $file = ROOT . $file;
+
     if (!file_exists($file)) {
         throw new \Exception("{$file} not found");
     }
@@ -17,7 +19,7 @@ spl_autoload_register(function($className) {
 });
 
 define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', __DIR__.DS);
+define('ROOT', __DIR__ . DS . '..' . DS);
 define('VIEW_DIR', ROOT . 'View' . DS);
 
 //temporary
@@ -66,12 +68,11 @@ try {
 } catch (\Framework\Exception\NotFoundException $e) {
 
     $controller = new \Controller\ErrorController($e);
-    $controller->error404Action();
-
+    $content = $controller->error404Action();
 } catch (\Exception $e) {
-    $controller = new \Controller\ErrorController($e);
-    $controller->errorAction();
 
-    echo 'Catch';
+    $controller = new \Controller\ErrorController($e);
+    $content = $controller->errorAction();
 }
-require VIEW_DIR . 'layout.phtml';
+
+echo $content;

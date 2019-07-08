@@ -24,8 +24,12 @@ abstract class BaseController
             throw new \Exception ("{$template} not found");
         }
 
-        ob_start();
+        ob_start(); // N\B reread line 27-33
         require_once $template;
+        $content = ob_get_clean();
+
+        ob_start();
+        require VIEW_DIR . 'layout.phtml';
         return ob_get_clean();
     }
 

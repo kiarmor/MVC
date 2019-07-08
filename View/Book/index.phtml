@@ -3,6 +3,6 @@
 
 <h1>Books list</h1>
 <?php foreach ($books as $book) :?>
-<?=$book->getTitle(); ?> <?=$book->getPrice()?> | <a href="/index.php?controller=Book&amp;action=show&amp;id=<?=$book->getId()?>">Details</a>
+<?=$book->getTitle(); ?> <?=$book->getPrice()?> | <a href="/webroot/index.php?controller=Book&amp;action=show&amp;id=<?=$book->getId()?>">Details</a>
 <br>
 <?php endforeach;?>
