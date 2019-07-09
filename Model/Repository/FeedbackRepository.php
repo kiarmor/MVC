@@ -2,9 +2,9 @@
 
 namespace Model\Repository;
 
-use Model\Entity\Category;
+use Model\Entity\Feedback;
 
-class CategoryRepository
+class FeedbackRepository
 {
     /**
      * @var \PDO
@@ -16,10 +16,9 @@ class CategoryRepository
         $this->pdo = $pdo;
     }
 
-    public function save()
+    public function save(Feedback $feedback)
     {
-        //pdo->execute
-        //insert into db...
+
     }
 
 }
