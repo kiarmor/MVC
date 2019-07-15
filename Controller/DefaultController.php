@@ -19,7 +19,7 @@ class DefaultController extends BaseController
 
     public function indexAction(Request $request) //дает возможность обращаться к $_GET, $_POST параметрам класса Request
     {
-        return $this->render('index.phtml');
+        return $this->render('login.phtml');
     }
 
     public function feedbackAction(Request $request)
