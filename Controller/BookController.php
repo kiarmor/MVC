@@ -18,7 +18,7 @@ class BookController extends BaseController
             ->findAll()
         ;
 
-        return $this->render('login.phtml', [
+        return $this->render('index.phtml', [
             'books' => $books
         ]);
     }
