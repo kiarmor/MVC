@@ -59,6 +59,9 @@ try {
 
     $controller = new $controller($dbConnection);
     $controller->setContainer($container);
+    $controller->chooseLayout();
+
+
 
     if (!method_exists($controller, $action)){
         throw new \Exception("Action {$action} not found");
