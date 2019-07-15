@@ -2,17 +2,15 @@
 
 namespace Model\Entity;
 
-
-class Feedback
+class User
 {
     private $id;
     private $email;
-    private $message;
+    private $password;
 
-    public function __construct($email, $message)
+    public function __construct($email)
     {
         $this->email = $email;
-        $this->message= $message;
     }
 
     /**
@@ -25,7 +23,7 @@ class Feedback
 
     /**
      * @param mixed $id
-     * @return Feedback
+     * @return User
      */
     public function setId($id)
     {
@@ -33,6 +31,8 @@ class Feedback
 
         return $this;
     }
+
+
 
     /**
      * @return mixed
@@ -44,7 +44,7 @@ class Feedback
 
     /**
      * @param mixed $email
-     * @return Feedback
+     * @return User
      */
     public function setEmail($email)
     {
@@ -56,19 +56,20 @@ class Feedback
     /**
      * @return mixed
      */
-    public function getMessage()
+    public function getPassword()
     {
-        return $this->message;
+        return $this->password;
     }
 
     /**
-     * @param mixed $message
-     * @return Feedback
+     * @param mixed $password
+     * @return User
      */
-    public function setMessage($message)
+    public function setPassword($password)
     {
-        $this->message = $message;
+        $this->password = $password;
 
         return $this;
     }
+
 }

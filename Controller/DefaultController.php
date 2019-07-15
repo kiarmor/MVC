@@ -19,6 +19,7 @@ class DefaultController extends BaseController
 
     public function indexAction(Request $request) //дает возможность обращаться к $_GET, $_POST параметрам класса Request
     {
+        echo password_hash("admin", PASSWORD_DEFAULT);
         return $this->render('index.phtml');
     }
 
