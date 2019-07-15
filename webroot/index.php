@@ -33,6 +33,7 @@ $dbConfig = [
 $dsn = "mysql: host={$dbConfig['host']}; dbname={$dbConfig['dbname']}";
 
 try {
+    \Framework\Session::start();
 
     $request = new \Framework\Request($_GET, $_POST, $_FILES);
     $container = new \Framework\Container();
@@ -40,6 +41,7 @@ try {
     $dbConnection = new \PDO($dsn, $dbConfig['user'], $dbConfig['pass']);
     $dbConnection->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $router = new \Framework\Router();
+
     $repositoryFactory = new \Framework\RepositoryFactory();
     $repositoryFactory->setPdo($dbConnection);
 

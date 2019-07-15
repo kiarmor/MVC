@@ -6,6 +6,7 @@ use Framework\BaseController;
 use Framework\Request;
 use Model\Entity\Feedback;
 use Model\Form\FeedbackForm;
+use Framework\Session;
 
 class DefaultController extends BaseController
 {
@@ -37,12 +38,18 @@ class DefaultController extends BaseController
                 );
 
                 $this->getRepository('Feedback')->save($feedback);
+
+                Session::setFlash('Saved');
+
                 $this
                     ->getRouter()
-                    ->redirect('/');
+                    ->redirect('http://localhost/webroot/index.php?controller=Default&action=feedback');
             }
+            Session::setFlash('Form invalid');
         }
-        return $this->render('feedback.phtml');
+        return $this->render('feedback.phtml', [
+            'form' => $form
+        ]);
     }
 
 }

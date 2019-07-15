@@ -25,11 +25,11 @@ class RepositoryFactory
             return $this->repositories[$entityName];
         }
 
-        $className = "\\Model\\Repository\\{$entityName}Repository";
+        $classname = "\\Model\Repository\\{$entityName}Repository";
 
         //todo: might check if file with repo exist
         //echo 'creating repo'
-        $repo = new $className();
+        $repo = new $classname();
         $repo->setPdo($this->pdo);
         $this->repositories[$entityName] = $repo;
 

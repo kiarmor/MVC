@@ -24,6 +24,7 @@ abstract class BaseController
             throw new \Exception ("{$template} not found");
         }
 
+
         ob_start(); // N\B reread line 27-33
         require_once $template;
         $content = ob_get_clean();
@@ -48,5 +49,11 @@ abstract class BaseController
             ->container
             ->get('router')
         ;
+    }
+
+    protected function getFlash()
+    {
+        $flash = Session::getFlash();
+        return $flash;
     }
 }
