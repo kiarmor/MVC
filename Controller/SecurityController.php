@@ -23,11 +23,12 @@ class SecurityController extends BaseController
                     ->findByEmail($form->email)
                 ;
 
+
                 if (!$user){
                     $this->reloadPageWithFlash('User not found');
                 }
 
-                if (password_verify($form->password, $user->getPasswors)){
+                if (password_verify($form->password, $user->getPassword())){
                     Session::set('user', $user->getEmail());
                     $this
                         ->getRouter()
@@ -36,9 +37,9 @@ class SecurityController extends BaseController
                 }
             }
 
-            $this->reloadPageWithFlash('User not found');
+            $this->reloadPageWithFlash('Wrong password');
         }
-        //$form -> isPost-> isValid -> save to session
+
         return $this->render('login.phtml', [
             'form' => $form
         ]);
@@ -46,7 +47,8 @@ class SecurityController extends BaseController
 
     public function logoutAction()
     {
-        // remove from session
+        Session::remove('user');
+        $this->getRouter()->redirect('/');
     }
 
     public function registerAction()

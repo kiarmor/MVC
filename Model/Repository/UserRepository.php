@@ -27,11 +27,13 @@ class UserRepository
           $res = $sth->fetch(\PDO::FETCH_ASSOC);
 
           if (!$res){
-              throw new UserNotFoundException();
+              return null;
           }
 
           $user = (new User($res['email']))
               ->setPassword($res['password'])
           ;
+
+          return $user;
     }
 }
