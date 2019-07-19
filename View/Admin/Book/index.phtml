@@ -1,0 +1,16 @@
+
+
+
+<h1>Books list</h1>
+
+<a href="/webroot/index.php?controller=Admin\Book&amp;action=create">Add book</a>
+<br>
+<?php foreach ($books as $book) :?>
+    <?=$book->getId()?><a>: <?=$book->getTitle(); ?> <?=$book->getPrice()?> |
+    <a href="/webroot/index.php?controller=Book&amp;action=show&amp;id=<?=$book->getId()?>">Details</a>
+    <a href="/webroot/index.php?controller=Admin\Book&amp;action=delete&amp;id=<?=$book->getId()?>">Delete</a>
+    <a href="/webroot/index.php?controller=Book&amp;action=edit&amp;id=<?=$book->getId()?>">Edit</a>
+
+
+    <br>
+<?php endforeach;?>

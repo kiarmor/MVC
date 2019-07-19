@@ -4,7 +4,10 @@
 
 namespace Model\Repository;
 
+use Framework\Session;
 use Model\Entity\Book;
+use Model\Entity\Feedback;
+use Model\Form\CreateBookForm;
 
 class BookRepository
 {
@@ -58,6 +61,31 @@ class BookRepository
             ->setCategory($res['category_id'])
         ;
         return $book;
+    }
+
+    public function delete($id)
+    {
+        $sth = $this->pdo->prepare('DELETE FROM book WHERE id = :id');
+        $sth->execute(['id' => $id]);
+    }
+
+    public function saveBook(CreateBookForm $form)
+    {
+        $sth = $this->pdo->prepare('INSERT INTO book VALUES (:id,
+                                                                    :title,
+                                                                    :description,
+                                                                    :price,
+                                                                    :category_id,
+                                                                    :is_active )');
+
+       $sth->execute([
+           'id' => NULL,
+           ':title' => $form->getTitle(),
+           ':description' => $form->getDescription(),
+           ':price' => $form->getPrice(),
+           ':category_id' => NULL,
+           ':is_active' => $form->getisActive()
+       ]);
     }
 
 }
